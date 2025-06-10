@@ -13,10 +13,7 @@ services:
       - key: NODE_VERSION
         value: 18
       - key: REACT_APP_API_URL
-        fromService:
-          type: web
-          name: student-dashboard-api
-          property: host
+        value: https://student-dashboard-api-nb82.onrender.com
 
   # Backend JSON Server API
   - type: web

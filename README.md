@@ -277,7 +277,7 @@ If you prefer manual setup:
    - **Build Command**: `npm install && npm run build`
    - **Publish Directory**: `build`
    - **Environment Variables**:
-     - `REACT_APP_API_URL`: `https://your-api-service.onrender.com`
+     - `REACT_APP_API_URL`: `https://student-dashboard-api-nb82.onrender.com`
 
 ### Environment Variables
 
