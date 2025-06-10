@@ -20,13 +20,16 @@ export const StudentProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // API base URL - uses environment variable for production or localhost for development
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+
   // 📍 ASYNC/AWAIT & ERROR HANDLING DEMONSTRATION
   const fetchCourses = async () => {
     setLoading(true);
     setError(null);
     try {
       // Simulating API call with json-server
-      const response = await fetch('http://localhost:3001/courses');
+      const response = await fetch(`${API_BASE_URL}/courses`);
       if (!response.ok) {
         throw new Error(`Failed to fetch courses: ${response.status}`);
       }
@@ -52,7 +55,7 @@ export const StudentProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:3001/students');
+      const response = await fetch(`${API_BASE_URL}/students`);
       if (!response.ok) {
         throw new Error(`Failed to fetch students: ${response.status}`);
       }
@@ -71,7 +74,7 @@ export const StudentProvider = ({ children }) => {
   // Add a new student
   const addStudent = async (studentData) => {
     try {
-      const response = await fetch('http://localhost:3001/students', {
+      const response = await fetch(`${API_BASE_URL}/students`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -108,7 +111,7 @@ export const StudentProvider = ({ children }) => {
   // Update an existing student
   const updateStudent = async (id, studentData) => {
     try {
-      const response = await fetch(`http://localhost:3001/students/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/students/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +154,7 @@ export const StudentProvider = ({ children }) => {
   // Delete a student
   const deleteStudent = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3001/students/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/students/${id}`, {
         method: 'DELETE',
       });
 

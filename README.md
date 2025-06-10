@@ -223,11 +223,72 @@ npm run dev        # Start both servers simultaneously
 npm run build      # Build optimized production bundle
 npm run preview    # Preview production build locally
 
+# Deployment
+npm run build-server    # Build for Render deployment
+npm run start-server    # Start production API server
+
 # Testing & Quality
 npm test           # Run test suite
 npm run test:watch # Run tests in watch mode
 npm run lint       # Check code quality
 ```
+
+## 🚀 Deployment to Render
+
+This project is configured for easy deployment to Render with both frontend and backend services.
+
+### Automatic Deployment (Recommended)
+
+1. **Fork this repository** to your GitHub account
+
+2. **Connect to Render**:
+   - Visit [render.com](https://render.com) and sign up/login
+   - Click "New +" → "Blueprint"
+   - Connect your GitHub account
+   - Select this forked repository
+   - Click "Connect"
+
+3. **Deploy**:
+   - Render will automatically detect the `render.yaml` file
+   - It will create both services: `student-dashboard-frontend` and `student-dashboard-api`
+   - Wait for both services to deploy (5-10 minutes)
+
+4. **Access your app**:
+   - Frontend URL: `https://student-dashboard-frontend.onrender.com`
+   - API URL: `https://student-dashboard-api.onrender.com`
+
+### Manual Deployment
+
+If you prefer manual setup:
+
+#### Backend (JSON Server API)
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Configure:
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm run start-server`
+   - **Environment**: Node
+   - **Plan**: Free
+
+#### Frontend (React App)
+1. Create a new Static Site on Render
+2. Connect your GitHub repository
+3. Configure:
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `build`
+   - **Environment Variables**:
+     - `REACT_APP_API_URL`: `https://your-api-service.onrender.com`
+
+### Environment Variables
+
+The app automatically configures API URLs:
+- **Development**: `http://localhost:3001`
+- **Production**: Uses `REACT_APP_API_URL` environment variable
+
+### Notes
+- **Free tier**: Services may sleep after 15 minutes of inactivity
+- **Cold starts**: First request after sleeping may take 30-60 seconds
+- **Persistent data**: JSON server data persists between deployments
 
 ## 🎓 Educational Value
 

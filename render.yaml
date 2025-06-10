@@ -1,0 +1,33 @@
+services:
+  # Frontend React App
+  - type: web
+    name: student-dashboard-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: REACT_APP_API_URL
+        fromService:
+          type: web
+          name: student-dashboard-api
+          property: host
+
+  # Backend JSON Server API
+  - type: web
+    name: student-dashboard-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run start-server
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health 

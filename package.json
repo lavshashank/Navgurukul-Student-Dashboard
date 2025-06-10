@@ -8,17 +8,20 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 3001",
-    "dev": "concurrently \"npm run server\" \"npm start\""
+    "server": "json-server --watch db.json --port 3001 --host 0.0.0.0",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
+    "build-server": "npm install && npm run build",
+    "start-server": "node server.js"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
-  },
-  "devDependencies": {
+    "react-scripts": "5.0.1",
     "json-server": "^0.17.4",
     "concurrently": "^8.2.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
     "tailwindcss": "^3.3.6",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32"
