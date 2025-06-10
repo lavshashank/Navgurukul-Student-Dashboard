@@ -21,7 +21,16 @@ export const StudentProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   // API base URL - uses environment variable for production or localhost for development
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 
+    (window.location.hostname.includes('render.com') 
+      ? 'https://student-dashboard-api-nb82.onrender.com' 
+      : 'http://localhost:3001');
+  
+  // Debug: Log the API URL being used
+  console.log('🔗 API Base URL:', API_BASE_URL);
+  console.log('🌍 Environment:', process.env.NODE_ENV);
+  console.log('📍 REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+  console.log('🌐 Hostname:', window.location.hostname);
 
   // 📍 ASYNC/AWAIT & ERROR HANDLING DEMONSTRATION
   const fetchCourses = async () => {
