@@ -63,9 +63,43 @@ export const StudentProvider = ({ children }) => {
       setStudents(data);
     } catch (err) {
       console.error('Failed to fetch students:', err);
-      setError(`Failed to fetch students: ${err.message}`);
-      // Fallback to empty array if API fails
-      setStudents([]);
+      setError(`API Connection Issue: ${err.message}. The app will continue to work with local data. Start json-server for full functionality.`);
+      // Fallback to mock data if API fails
+      const mockStudents = [
+        {
+          id: 1,
+          name: "Priya Sharma",
+          email: "priya.sharma@navgurukul.org",
+          course: "Full Stack Web Development",
+          profileImage: "https://ui-avatars.com/api/?name=Priya+Sharma&background=3b82f6&color=ffffff&size=100",
+          createdAt: "2024-02-15T10:00:00.000Z",
+          documents: [
+            { id: 1, name: "Resume.pdf", uploadedAt: "2024-02-15T10:30:00.000Z" },
+            { id: 2, name: "Portfolio.pdf", uploadedAt: "2024-02-16T14:20:00.000Z" }
+          ]
+        },
+        {
+          id: 2,
+          name: "Arjun Kumar",
+          email: "arjun.kumar@navgurukul.org", 
+          course: "Python Programming",
+          profileImage: "https://ui-avatars.com/api/?name=Arjun+Kumar&background=059669&color=ffffff&size=100",
+          createdAt: "2024-02-16T14:00:00.000Z",
+          documents: [
+            { id: 3, name: "Certificates.pdf", uploadedAt: "2024-02-17T09:15:00.000Z" }
+          ]
+        },
+        {
+          id: 3,
+          name: "Sneha Gupta",
+          email: "sneha.gupta@navgurukul.org",
+          course: "Data Science",
+          profileImage: "https://ui-avatars.com/api/?name=Sneha+Gupta&background=dc2626&color=ffffff&size=100",
+          createdAt: "2024-02-17T09:30:00.000Z",
+          documents: []
+        }
+      ];
+      setStudents(mockStudents);
     } finally {
       setLoading(false);
     }
