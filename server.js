@@ -8,7 +8,7 @@ const middlewares = jsonServer.defaults();
 
 // Enable CORS for all routes
 server.use(cors({
-  origin: ['http://localhost:3000', 'https://student-dashboard-frontend.onrender.com'],
+  origin: ['http://localhost:3000', 'https://student-dashboard-frontend-5bxb.onrender.com'],
   credentials: true
 }));
 
